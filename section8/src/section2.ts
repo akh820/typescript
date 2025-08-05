@@ -13,9 +13,9 @@ type UserWithOptionalAge = Omit<User, keyof User> & {
   age?: number;
 };
 
-type boolean = {
-  [key in keyof User]?: boolean;
-};
+// type boolean = {
+//   [key in keyof User]?: boolean;
+// };
 
 function fetchUser(): User {
   return {
