@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ES5", // 자바스크립트 버전, ESnext = 최신 자바스크립트 버전
+    "module": "commonJs", // 어디서든 잘 동작하도록 해줌
+    "strict": true,
+    "allowJs": true,
+    "esModuleInterop": true, //default로 내보낸 것이 아니더라도 허용해주는 옵션
+    // 보통은 키고 개발함, default 로 내보낸 값이 없을 수 있으니
+    "jsx": "react-jsx"
+  },
+  "include":["src"]
+}
