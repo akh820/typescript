@@ -1,70 +1,12 @@
-import React, {
-  useState,
-  useRef,
-  useEffect,
-  useReducer,
-  ReactElement,
-  useContext,
-} from "react";
+import { useEffect } from "react";
 import "./App.css";
 import Editor from "./component/Editor";
-import { Todo } from "./types";
 import TodoItems from "./component/TodoItems";
-
-type Action =
-  | {
-      type: "CREATE";
-      data: {
-        id: number;
-        content: string;
-      };
-    }
-  | { type: "DELETE"; id: number };
-
-export const TodoStateContext = React.createContext<Todo[] | null>(null);
-export const TodoDispatchContext = React.createContext<{
-  onClickAdd: (text: string) => void;
-  onClickDelete: (id: number) => void;
-} | null>(null);
-
-export function useTodoDispatch() {
-  const dispatch = useContext(TodoDispatchContext);
-  if (!dispatch) throw new Error("TodoDispatchContext에 문제가있다");
-  return dispatch;
-}
-
-function reducer(state: Todo[], action: Action) {
-  switch (action.type) {
-    case "CREATE": {
-      return [...state, action.data];
-    }
-    case "DELETE": {
-      return state.filter((it) => it.id !== action.id);
-    }
-  }
-}
+import { TodoDispatchContext, TodoStateContext } from "./contexts/index";
+import { useTodo } from "./hooks/useTodo";
 
 function App() {
-  const [todos, dispatch] = useReducer(reducer, []);
-  const idRef = useRef(0);
-
-  const onClickAdd = (text: string) => {
-    // action개체를 인수로 전달
-    dispatch({
-      type: "CREATE",
-      data: {
-        id: idRef.current++,
-        content: text,
-      },
-    });
-  };
-
-  const onClickDelete = (id: number) => {
-    dispatch({
-      type: "DELETE",
-      id: id,
-    });
-  };
+  const { todos, onClickAdd, onClickDelete } = useTodo();
 
   useEffect(() => {
     console.log(todos);

@@ -1,5 +1,5 @@
-import { ReactElement, useContext, useState } from "react";
-import { TodoDispatchContext, useTodoDispatch } from "../App";
+import { useState } from "react";
+import { useTodoDispatch } from "../hooks/useTodoDispatch";
 
 interface Props {}
 

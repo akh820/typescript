@@ -1,4 +1,4 @@
-import { useTodoDispatch } from "../App";
+import { useTodoDispatch } from "../hooks/useTodoDispatch";
 import { Todo } from "../types";
 
 interface Props extends Todo {}
